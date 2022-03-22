@@ -9,8 +9,8 @@ pg.display.update()
 
 pg.display.set_caption('Loading OS')
 bios_logo = pg.image.load('bios_logo.png')
-bios_logo_scale = pg.transform.scale(bios_logo, (500, 200))
-bios_logo_scale_rect = bios_logo_scale.get_rect(center=(260,100))
+bios_logo_scale = pg.transform.scale(bios_logo, (500, 120))
+bios_logo_scale_rect = bios_logo_scale.get_rect(center=(260,75))
 load = False
 load1 = False
 while True:
@@ -28,14 +28,16 @@ while True:
     print_text('American',230,20,70,255,255,255)
     print_text('Megatrends',230,80,70,255,255,255)
     print_text('By Purpl3',730,10,20,255,255,255)
+    print_text('www.ami.com',75,120,20,255,255,255)
     if load1==False:
         pg.display.update()
         wait(1)
         load1=True
+    print_text('Speed: 3.19 GHz ',10,170,30,255,255,255)
     print_text('AMLBIOS (C) 2608 American Megatrends. Inc.',10,200,30,255,255,255)
     print_text('ASUS PSK PRO ACPI BIOS Revision 1202',10,230,30,255,255,255)
     print_text('Loading...',10,260,30,255,255,255)
-
+    
     pg.display.update()
     wait(2)
     import system
