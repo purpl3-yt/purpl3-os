@@ -19,6 +19,7 @@ show_amogus = False
 show_themes = False
 show_browser = False
 show_easter_egg = False
+show_game = False
 
 config.read('settings.ini')
 if str(config.get('DEFAULT', 'theme'))=='white':#если в файле settings.ini переменная theme есть white то сделать белую тему
@@ -33,8 +34,6 @@ elif str(config.get('DEFAULT', 'theme'))=='purple':#то что также но 
 font = pg.font.SysFont(None, 30)
 text = "Пишите сюда"
 input_active = True
-
-print(str(config.get('DEFAULT', 'theme')))
 
 #--------------Функции-----------
 def image(source_image,transform_x,transform_y,pos_x,pos_y):
@@ -77,6 +76,8 @@ while True:
         print_text('Браузер',50,380,30,0,0,0)#октрывает меню браузера
         pg.draw.rect(sc, (0,0,0), (0,370,200,40),2)
 
+        print_text('Игра',70,420,30,0,0,0)#октрывает мини игру
+        pg.draw.rect(sc, (0,0,0), (0,410,200,40),2)
 
     if show_amogus==True:
         show_menu=False
@@ -107,9 +108,15 @@ while True:
     if show_easter_egg==True:#Если нажать на пасхалку 
         show_menu=False
         base()
-        print_text('Purpl3 OS Версии 2022 года\n',300,320,30,0,0,0)#пасхалка
+        print_text('Purpl3 OS Версии 2022 года',300,320,30,0,0,0)#пасхалка
 
 
+    if show_game==True:
+        pg.draw.rect(sc, (255, 255, 255), (300,100,300,400))#база для приложений
+        pg.draw.rect(sc, (255,0,0), (550,100,50,50))
+        pg.draw.line(sc,(255,255,255),(550,100),(600,150),3)
+        pg.draw.line(sc,(255,255,255),(600,100),(550,150),3)
+        print('show game')
     image('os_menu.png',60,60,30,575)
     image('off_icon.png',100,100,760,575)
     
@@ -128,8 +135,7 @@ while True:
             
             print(pos)
             #--------НАЖАТИЕ НА ПУСК-------
-            if pos[0] in range(10,50):
-                if pos[1] in range(551,600):#на нажатие пуск
+            if pos[0] in range(10,50) and pos[1] in range(551,600):#на нажатие пуск
                     show_menu=True
             
             elif pos[0] in range(200,800):
@@ -139,78 +145,74 @@ while True:
                     show_menu=False
             #--------КНОПКА ВЫКЛЮЧЕНИЯ-------
 
-            if pos[0] in range(740,800):
-                if pos[1] in range(551,600):
-                    quit()
+            if pos[0] in range(740,800) and pos[1] in range(551,600):
+                quit()
 
             #--------ПРИЛОЖЕНИЯ ИЗ МЕНЮ ПУСК-------
-            if show_menu==True:
-                if pos[0] in range(0,200):#Ссылка на тт создателя
-                    if pos[1] in range(250,290):
-                        webbrowser.open('https://www.tiktok.com/@purpl3_ai')
+            
 
-            if show_menu==True:
-                if pos[0] in range(0,200):#Меню амогуса
-                    if pos[1] in range(290,330):
-                        show_amogus=True
+                
 
             if show_amogus==True or show_themes==True or show_browser==True or show_easter_egg==True:
-                if pos[0] in range(550,600):#В амогусе и темах кнопка закрыть
-                    if pos[1] in range(100,150):
-                        show_amogus=False
-                        show_themes=False
-                        show_browser=False
-                        show_easter_egg=False
+                if pos[0] in range(550,600) and pos[1] in range(100,150):#В амогусе и темах кнопка закрыть
+                    show_amogus=False
+                    show_themes=False
+                    show_browser=False
+                    show_easter_egg=False
             
             if show_amogus==True:
-                if pos[0] in range(325,575):#В амогусе при нажатии амогуса
-                    if pos[1] in range(175,425):
-                            playsound('./amogus.mp3')
+                if pos[0] in range(325,575) and pos[1] in range(175,425):#В амогусе при нажатии амогуса
+                    playsound('./amogus.mp3')
 
             if show_menu==True:
-                if pos[0] in range(0,200):#Меню тем
-                    if pos[1] in range(330,370):
-                        show_themes=True
+                if pos[0] in range(0,200) and pos[1] in range(330,370):#Меню тем
+                    show_themes=True
 
-            if show_menu==True:
-                if pos[0] in range(0,200):#Браузер
-                    if pos[1] in range(370,410):
-                        show_browser=True
+            
+                if pos[0] in range(0,200) and pos[1] in range(370,410):#Браузер
+                    show_browser=True
 
-            if show_themes==True:#Меняет тему на фиолетавою
-                if pos[0] in range(300,550):
-                    if pos[1] in range(100,220):
-                        config['DEFAULT'] = {'theme': 'purple'}
-                        with open('settings.ini', 'w') as configfile:config.write(configfile)
-                        theme_r = 138
-                        theme_b = 43
-                        theme_g = 226
+            
+                if pos[0] in range(0,200) and pos[1] in range(410,450):#Мини игра
+                    show_game=True
 
-                if pos[0] in range(300,550):
-                    if pos[1] in range(220,220+120):
-                        config['DEFAULT'] = {'theme': 'white'}
-                        with open('settings.ini', 'w') as configfile:config.write(configfile)
-                        theme_r = 255
-                        theme_b = 255
-                        theme_g = 255
+                if pos[0] in range(0,200) and pos[1] in range(290,330):#Меню амогуса
+                    show_amogus=True
+
+                if pos[0] in range(0,200) and pos[1] in range(250,290):#Ссылка на тт создателя
+                    webbrowser.open('https://www.tiktok.com/@purpl3_ai')
+
+
+
+            if show_themes==True:#Меняет тему на фиолетовою
+                if pos[0] in range(300,550) and pos[1] in range(100,220):
+                    config['DEFAULT'] = {'theme': 'purple'}
+                    with open('settings.ini', 'w') as configfile:config.write(configfile)
+                    theme_r = 138
+                    theme_b = 43
+                    theme_g = 226
+
+                if pos[0] in range(300,550) and pos[1] in range(220,220+120):
+                    config['DEFAULT'] = {'theme': 'white'}
+                    with open('settings.ini', 'w') as configfile:config.write(configfile)
+                    theme_r = 255
+                    theme_b = 255
+                    theme_g = 255
 
 
             if show_browser==True:#Браузер строка поиска
-                if pos[0] in range(330,330+230):
-                    if pos[1] in range(195,195+100):
-                        input_active = True
-                        text = ''
+                if pos[0] in range(330,330+230) and pos[1] in range(195,195+100):
+                    input_active = True
+                    text = ''
 
             if show_browser==True:#Браузер кнопка поиск
-                if pos[0] in range(345,345+200):
-                    if pos[1] in range(300,360):
-                        input_active = False
-                        webbrowser.open(f'https://www.google.com/search?&q={text}')
+                if pos[0] in range(345,345+200) and pos[1] in range(300,360):
+                    input_active = False
+                    webbrowser.open(f'https://www.google.com/search?&q={text}')
 
             if show_menu==False and show_amogus==False and show_themes==False and show_browser==False:
-                if pos[0] in range(695,800):
-                    if pos[1] in range(2,33):
-                        show_easter_egg=True
+                if pos[0] in range(695,800) and pos[1] in range(2,33):
+                    show_easter_egg=True
 
 
     pg.display.update()
