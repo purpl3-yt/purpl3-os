@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import pygame as pg #Импорт
 import sys #Импорт
 import webbrowser #Импорт
@@ -26,6 +27,30 @@ show_themes = False#Статус тем
 show_browser = False#Статус браузера
 show_easter_egg = False#Статус пасхалки
 #show_game = False#Статус игры
+=======
+import pygame as pg
+import sys
+import webbrowser
+from time import sleep as wait
+from playsound import playsound
+import configparser
+import configparser
+config = configparser.ConfigParser()
+
+FPS = 60
+pg.init()
+sc = pg.display.set_mode((800, 600))
+pg.display.set_caption('Purpl3 OS on Pygame')
+clock = pg.time.Clock()
+pg.display.update()
+
+show_menu = False
+show_amogus = False
+show_themes = False
+show_browser = False
+show_easter_egg = False
+show_game = False
+>>>>>>> origin/main
 
 config.read('settings.ini')
 if str(config.get('DEFAULT', 'theme'))=='white':#если в файле settings.ini переменная theme есть white то сделать белую тему
@@ -37,9 +62,15 @@ elif str(config.get('DEFAULT', 'theme'))=='purple':#то что также но 
     theme_b = 43# Синий
     theme_g = 226# Зелёный
 
+<<<<<<< HEAD
 font = pg.font.SysFont(None, 30)#Шрифт и размер
 text = "Пишите сюда"#Текст
 input_active = True#Статус режима писания
+=======
+font = pg.font.SysFont(None, 30)
+text = "Пишите сюда"
+input_active = True
+>>>>>>> origin/main
 
 #--------------Функции-----------
 def image(source_image,transform_x,transform_y,pos_x,pos_y):#Пресет для вывода картинок (для удобства)
@@ -83,8 +114,13 @@ while True:
         print_text('Браузер',50,380,30,0,0,0)#октрывает меню браузера
         pg.draw.rect(sc, (0,0,0), (0,370,200,40),2)#Рамка приложения
 
+<<<<<<< HEAD
         #print_text('Игра',70,420,30,0,0,0)#октрывает мини игру
         #pg.draw.rect(sc, (0,0,0), (0,410,200,40),2)#Рамка приложения
+=======
+        print_text('Игра',70,420,30,0,0,0)#октрывает мини игру
+        pg.draw.rect(sc, (0,0,0), (0,410,200,40),2)
+>>>>>>> origin/main
 
     if show_amogus==True:#Показывать приложение амогуса
         show_menu=False#Скрывать меню
@@ -117,6 +153,7 @@ while True:
         base()
         print_text('Purpl3 OS Версии 2022 года',300,320,30,0,0,0)#пасхалка
 
+<<<<<<< HEAD
 
     #if show_game==True:
         #show_menu=False
@@ -145,7 +182,15 @@ while True:
         #        laser_y=380
         #if fire==True:
         #    laser_y-=20
+=======
+>>>>>>> origin/main
 
+    if show_game==True:
+        pg.draw.rect(sc, (255, 255, 255), (300,100,300,400))#база для приложений
+        pg.draw.rect(sc, (255,0,0), (550,100,50,50))
+        pg.draw.line(sc,(255,255,255),(550,100),(600,150),3)
+        pg.draw.line(sc,(255,255,255),(600,100),(550,150),3)
+        print('show game')
     image('os_menu.png',60,60,30,575)
     image('off_icon.png',100,100,760,575)
     
@@ -179,7 +224,11 @@ while True:
 
             #--------КНОПКА ВЫКЛЮЧЕНИЯ-------
 
+<<<<<<< HEAD
             if pos[0] in range(740,800) and pos[1] in range(551,600):#При нажатии на кнопку выключения
+=======
+            if pos[0] in range(740,800) and pos[1] in range(551,600):
+>>>>>>> origin/main
                 quit()
 
             #--------ПРИЛОЖЕНИЯ ИЗ МЕНЮ ПУСК-------
@@ -193,10 +242,14 @@ while True:
                     show_themes=False
                     show_browser=False
                     show_easter_egg=False
+<<<<<<< HEAD
             #if show_game==True:
                 #if pos[0] in range(600,650) and pos[1] in range(100,150):#Закрывает игру
                     #show_game=False
 
+=======
+            
+>>>>>>> origin/main
             if show_amogus==True:
                 if pos[0] in range(325,575) and pos[1] in range(175,425):#В амогусе при нажатии амогуса
                     playsound('./amogus.mp3')
