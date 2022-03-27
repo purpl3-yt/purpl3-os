@@ -15,17 +15,12 @@ pg.display.set_caption('Purpl3 OS on Pygame')#Название окна OS
 clock = pg.time.Clock()#Кадры в секунду
 pg.display.update()#обновление экрана
 
-#player_x = 252
-#laser_x = 1
-#laser_y = 1
-#fire=False
 
 show_menu = False#Статус меню
 show_amogus = False#Статус амогуса
 show_themes = False#Статус тем
 show_browser = False#Статус браузера
 show_easter_egg = False#Статус пасхалки
-#show_game = False#Статус игры
 
 config.read('settings.ini')
 if str(config.get('DEFAULT', 'theme'))=='white':#если в файле settings.ini переменная theme есть white то сделать белую тему
@@ -47,8 +42,7 @@ def image(source_image,transform_x,transform_y,pos_x,pos_y):#Пресет для
     picture_scale = pg.transform.scale(picture, (transform_x,transform_y))
     picture_scale_rect = picture_scale.get_rect(center=(pos_x,pos_y))
     sc.blit(picture_scale,picture_scale_rect)
-
-
+ 
 def base():#База приложений (для удобсва)
     pg.draw.rect(sc, (255, 255, 255), (300,100,300,400))#база для приложений
     pg.draw.rect(sc, (255,0,0), (550,100,50,50))#Кнопка закрыть
@@ -83,14 +77,13 @@ while True:
         print_text('Браузер',50,380,30,0,0,0)#октрывает меню браузера
         pg.draw.rect(sc, (0,0,0), (0,370,200,40),2)#Рамка приложения
 
-        #print_text('Игра',70,420,30,0,0,0)#октрывает мини игру
+        #print_text('Игра',70,420,30,0,0,0)#игры не будет :( 
         #pg.draw.rect(sc, (0,0,0), (0,410,200,40),2)#Рамка приложения
 
     if show_amogus==True:#Показывать приложение амогуса
         show_menu=False#Скрывать меню
         base()#База для приложений
         image('amogus.jpg',250,250,450,300)
-        #sc.blit(amogus_scale,amogus_scale_rect)
 
     if show_themes==True:
         show_menu=False
@@ -114,40 +107,13 @@ while True:
 
     if show_easter_egg==True:#Если нажать на пасхалку 
         show_menu=False#Скрывает меню
-        base()
+        base()#База для приложений
         print_text('Purpl3 OS Версии 2022 года',300,320,30,0,0,0)#пасхалка
 
 
-    #if show_game==True:
-        #show_menu=False
-        #pg.draw.rect(sc, (0, 0, 0), (150,100,500,400))#база для приложений
-        #pg.draw.rect(sc, (255,0,0), (600,100,50,50))
-        #pg.draw.line(sc,(255,255,255),(600,100),(650,150),3)
-        #pg.draw.line(sc,(255,255,255),(650,100),(600,150),3)
 
-        
-        #if keys[pg.K_a]:
-        #    if player_x>220:
-        #        player_x-=10
-        #if keys[pg.K_d]:
-        #    if player_x<577:
-        #        player_x+=10
-        #image('plane.png',150-50,180-50,player_x,450)
-        #image('plane_bullet.png', 100-40,150-50,laser_x,laser_y)
-        #if laser_y<130:
-        #    fire=False
-        #    laser_x=0
-        #    laser_y=0
-        #if keys[pg.K_SPACE]:
-        #    if fire==False:
-        #        fire=True
-        #        laser_x=player_x-3
-        #        laser_y=380
-        #if fire==True:
-        #    laser_y-=20
-
-    image('os_menu.png',60,60,30,575)
-    image('off_icon.png',100,100,760,575)
+    image('os_menu.png',60,60,30,575)#Иконка меню пуск
+    image('off_icon.png',100,100,760,575)#Иконка выключения
     
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -166,7 +132,7 @@ while True:
         if event.type == pg.MOUSEBUTTONDOWN:
             pos = pg.mouse.get_pos()
             
-            print(pos)
+            #print(pos)
             #--------НАЖАТИЕ НА ПУСК-------
             if pos[0] in range(10,50) and pos[1] in range(551,600):#на нажатие пуск
                     show_menu=True
@@ -188,13 +154,14 @@ while True:
                 
 
             if show_amogus==True or show_themes==True or show_browser==True or show_easter_egg==True:
-                if pos[0] in range(550,600) and pos[1] in range(100,150):#В амогусе и темах кнопка закрыть
+                if pos[0] in range(550,600) and pos[1] in range(100,150):#В амогусе и темах и т.д кнопка закрыть
                     show_amogus=False
                     show_themes=False
                     show_browser=False
                     show_easter_egg=False
+            
             #if show_game==True:
-                #if pos[0] in range(600,650) and pos[1] in range(100,150):#Закрывает игру
+                #if pos[0] in range(600,650) and pos[1] in range(100,150):#Игры не будет :(
                     #show_game=False
 
             if show_amogus==True:
