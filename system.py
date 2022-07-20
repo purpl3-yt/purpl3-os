@@ -184,7 +184,7 @@ while True:
                     show_amogus=True
 
                 if pos[0] in range(0,200) and pos[1] in range(250,290):#Ссылка на тт создателя
-                    webbrowser.open('https://www.tiktok.com/@purpl3_ai')
+                    webbrowser.open('https://www.tiktok.com/@purpl3_dc')
 
 
 
